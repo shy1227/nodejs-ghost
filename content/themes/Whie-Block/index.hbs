@@ -1,0 +1,87 @@
+{{!< default}}
+<div class="col-md-8 index-post">
+		{{! The tag below includes the post loop - partials/loop.hbs }}
+		{{> "loop"}}
+		{{pagination}}
+</div>
+<div class="col-md-4">
+					<div class="sidebar-about index-sidebar">
+						<h3 class="sidebar-title"></h3>
+						<hr>
+						<div class="sidebar-about-logo">
+							<img src="{{@blog.logo}}">
+						</div>
+{{!-- 这里是关于我的地盘   (about me) --}}
+						<p>
+                        {{#if @blog.description}}
+                        {{@blog.description}}
+                        {{else}}
+                        <em><a href="{{@blog.url}}/ghost/settings/general/">(添加站点描述)</a></em>
+                        {{/if}}
+                        </p>
+					</div>
+					<div class="index-sidebar sidebar-social-cintact">
+						<h3>联系我：</h3>
+						<hr>
+{{!-- 这里是社交按钮的地盘   (Social contact) --}}
+						<a href="https://github.com/shy1227"><i class="iconfont icon-github1"></i></a>
+						<a href="https://wx.qq.com/441854791"><i class="iconfont icon-weixin"></i></a>
+						<a href="http://weibo.com/441854791"><i class="iconfont icon-weibo1"></i></a>
+						<a href="http://t.qq.com/shy1227"><i class="iconfont icon-txweibo"></i></a>
+						<a href="mailto:shy1227@163.com"><i class="iconfont icon-youxiang1"></i></a>
+{{!-- 临时图标
+						<a href=""><i class="iconfont icon-qqkongjian"></i></a>
+						<a href=""><i class="iconfont icon-zhihu"></i></a>
+						<a href=""><i class="iconfont icon-coding"></i></a>
+						<a href=""><i class="iconfont icon-tieba1"></i></a>
+						<a href=""><i class="iconfont icon-youku"></i></a>
+						<a href=""><i class="iconfont icon-youtube1"></i></a>
+						<a href=""><i class="iconfont icon-facebook-copy"></i></a>
+						<a href=""><i class="iconfont icon-tuite"></i></a>
+						<a href=""><i class="iconfont icon-google1"></i></a>--}}
+					</div>
+					<div class="index-sidebar sidebar-follow">
+						<h3>分享</h3>
+						<hr>
+{{!-- 这里是关注按钮的地盘   (follow me) --}}
+                        <div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div>
+                        <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"32"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+					</div>
+					<div class="index-sidebar sidebar-tag">
+						<h3>Tags</h3>
+						<hr>
+						{{tag_cloud limit="all"}}
+					</div>
+					<div class="index-sidebar sidebar-link">
+						<h3>链接</h3>
+						<hr>
+						<ul>
+{{!-- 这里是友情链接的地盘   (Links) --}}
+							<li><a href="www.sunhy.top"><i class="iconfont icon-link"></i>www.sunhy.top</a></li>
+						</ul>
+					</div>
+                    <div class="index-sidebar sidebar-link">
+						<h3>总数</h3>
+						<hr>
+						<ul class="iconfont">
+{{!-- 文章数   (Links) --}}
+							<li>文章:
+                                {{! count posts }}
+                                {{#get "posts" as |posts postPages|}}
+                                <strong>{{postPages.total}}</strong>
+                                {{/get}}
+                            </li><br>
+                            <li>推荐:
+                                {{#get "posts" filter="featured:true" as |featured featuredPages|}}
+                                <strong>{{featuredPages.total}}</strong>
+                                {{/get}}
+                            </li><br>
+                            <li>标签:
+                                {{! count tags }}
+                                {{#get "tags" as |tags tagPages|}}
+                                <strong>{{tagPages.total}}</strong>
+                                {{/get}}
+                            </li><br>
+						</ul>
+					</div>
+				</div>

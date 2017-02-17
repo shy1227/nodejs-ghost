@@ -1,0 +1,35 @@
+{{! This is the post loop - each post will be output using this markup }}
+{{#foreach posts}}
+
+{{^is 'paged'}}
+
+<article class="loopPost {{post_class}} {{#if @first}}latestPost{{/if}}">
+{{#if @first}}<p class="latestMark">最新帖子</p>{{/if}}
+{{else}}
+<article class="loopPost {{post_class}}">
+{{/is}}
+        <h2 class="loopPost-title post-title"><a href="{{url}}">{{{title}}}</a></h2>
+{{#if image}}
+       <div class="postCover" style="background-image:url('{{image}}')">
+        <img class="invisibleImg" src="{{image}}">
+       </div>
+{{/if}}
+        <div class="postInfo">
+          <span>{{author}} |</span>
+          <span class="post-date" datetime="{{date format='YYYY-MM-DD'}}">{{date format="YYYY-MM-DD"}}</span>
+          <span> | {{tags}} </span>
+        </div>
+
+<div class="postSharing"></div>
+<div class="postExcerpt">
+<p>
+{{excerpt words="45"}} ...
+</p>
+<a class="readMore" title="{{title}}" href="{{url}}"><span>阅读全文 </span><span>&#10142;</span></a>
+</div>
+</article>
+
+{{/foreach}}
+
+{{! Previous/next page links - displayed on every page }}
+{{pagination}}
